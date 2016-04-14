@@ -1,6 +1,8 @@
+require_relative '../data/properties_array'
+
 class PropertiesController
   def initialize
-    @properties = DataHelper.parse_properties
+    @properties = PropertiesArray.new
   end
   
   def create(property_params)

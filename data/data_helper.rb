@@ -1,6 +1,6 @@
 require 'json'
-require_relative '../model/property.rb'
-require_relative '../model/province.rb'
+require_relative '../models/property.rb'
+require_relative '../models/province.rb'
 
 class DataHelper
   

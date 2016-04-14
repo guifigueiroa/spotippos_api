@@ -1,6 +1,8 @@
+require_relative '../data/provinces_array'
+
 class ProvincesController
   def initialize
-    @provinces = DataHelper.parse_provinces
+    @provinces = ProvincesArray.new
   end
   
   def create(province_params)
