@@ -1,12 +1,19 @@
-require_relative '../data/properties_array'
+require_relative '../data/properties_data'
 
 class PropertiesController
   def initialize
-    @properties = PropertiesArray.new
+    @properties = PropertiesData.new
   end
   
-  def create(property_params)
-    
+  def create(params)
+    p = Property.new(@properties.next_id,
+                     params["x"],
+                     params["y"],
+                     params["beds"],
+                     params["baths"],
+                     params["squareMeters"])
+    @properties << p
+    p
   end
   
   def index

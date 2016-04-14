@@ -41,24 +41,10 @@ describe DataHelper do
   end
 end
 
-describe ProvincesArray do
-  let(:provinces) { ProvincesArray.new }
-  it "should act like an array" do
-    expect(provinces).to respond_to :<<
-    expect(provinces).to respond_to :[]
-    expect(provinces).to respond_to :[]=
-    expect(provinces).to respond_to :first
-    expect(provinces).to respond_to :last
-    expect(provinces).to respond_to :add
-    expect(provinces).to respond_to :each
-    expect(provinces).to respond_to :length
-  end
-end
-
-describe PropertiesArray do
-  let(:properties) { PropertiesArray.new }
+describe PropertiesData do
+  let(:properties) { PropertiesData.new }
   let(:next_id) { properties.next_id }
-  let(:new_property) { Property.new(34,12,4,2,77,next_id) }
+  let(:new_property) { Property.new(next_id,34,12,4,2,77) }
   before do
     properties << new_property
   end

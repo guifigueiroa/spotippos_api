@@ -5,7 +5,7 @@ describe PropertiesController do
   describe "#index" do
     it "retrieves all properties" do
       properties = ctrl.index
-      expect(properties).to be_instance_of PropertiesArray
+      expect(properties).to be_instance_of PropertiesData
       expect(properties.length).to eql 4000
     end
   end
@@ -21,15 +21,15 @@ describe PropertiesController do
       expect(property.square_meters).to eql 150
     end
   end
-end
-
-describe ProvincesController do
-  let(:ctrl) { ProvincesController.new }
-  describe "#index" do
-    it "retrieves all provinces" do
-      provinces = ctrl.index
-      expect(provinces).to be_instance_of ProvincesArray
-      expect(provinces.length).to eql 6
+  
+  describe "#create" do
+    let(:params){ { "x" => 10, "y" => 20, "beds" => 3, "baths" => 2, "squareMeters" => 100 } }
+    
+    it "adds new property to the array" do
+      p = ctrl.create(params)
+      
+      expect(p).to be_instance_of Property
+      expect(ctrl.index.last).to eql p
     end
   end
 end
