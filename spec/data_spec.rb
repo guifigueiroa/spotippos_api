@@ -35,7 +35,7 @@ describe DataHelper do
         expect(p.y).not_to be_nil
         expect(p.beds).not_to be_nil
         expect(p.baths).not_to be_nil
-        # square_meter is nil in some instances
+        expect(p.square_meters).not_to be_nil
       end
     end
   end
@@ -47,8 +47,8 @@ describe ProvincesArray do
     expect(provinces).to respond_to :<<
     expect(provinces).to respond_to :[]
     expect(provinces).to respond_to :[]=
-    expect(provinces).to respond_to :first    
-    expect(provinces).to respond_to :last    
+    expect(provinces).to respond_to :first
+    expect(provinces).to respond_to :last
     expect(provinces).to respond_to :add
     expect(provinces).to respond_to :each
     expect(provinces).to respond_to :length
@@ -57,14 +57,34 @@ end
 
 describe PropertiesArray do
   let(:properties) { PropertiesArray.new }
+  let(:next_id) { properties.next_id }
+  let(:new_property) { Property.new(34,12,4,2,77,next_id) }
+  before do
+    properties << new_property
+  end
+  
   it "should act like an array" do
     expect(properties).to respond_to :<<
     expect(properties).to respond_to :[]
     expect(properties).to respond_to :[]=
-    expect(properties).to respond_to :first    
-    expect(properties).to respond_to :last    
+    expect(properties).to respond_to :first
+    expect(properties).to respond_to :last
     expect(properties).to respond_to :add
     expect(properties).to respond_to :each
     expect(properties).to respond_to :length
+  end
+  
+  describe "#find" do
+    it "finds by id" do
+      expect(properties.find(next_id)).to eql new_property
+      expect(properties.find(nil)).to be_nil
+      expect(properties.find(0)).to be_nil
+    end
+  end
+  
+  describe "#next_id" do
+    it "increments 1 to the last id" do
+      expect(properties.next_id).to eql next_id + 1
+    end
   end
 end

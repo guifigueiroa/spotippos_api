@@ -12,4 +12,8 @@ class PropertiesController
   def index
     @properties
   end
+  
+  def show(id)
+    @properties.find(id)
+  end
 end

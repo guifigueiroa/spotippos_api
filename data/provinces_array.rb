@@ -1,3 +1,4 @@
+require_relative 'data_helper'
 require 'forwardable'
 
 class ProvincesArray
