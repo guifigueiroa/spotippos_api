@@ -46,3 +46,7 @@ get "/properties" do
     halt 400
   end
 end
+
+error Sinatra::NotFound do
+  { msg: "Not found" }.to_json
+end
