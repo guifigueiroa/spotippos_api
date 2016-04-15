@@ -1,9 +1,10 @@
 require 'spec_helper.rb'
 
 describe DataHelper do
+  let(:provinces) { DataHelper.parse_provinces }
+  let(:properties) { DataHelper.parse_properties(provinces) }
+  
   describe "#parse_provinces" do
-    let(:provinces) { DataHelper.parse_provinces }
-    
     it "parses all provinces correctly" do      
       expect(provinces.length).to eq 6
       expect(provinces).to be_instance_of Array
@@ -20,8 +21,6 @@ describe DataHelper do
   end
   
   describe "#parse_properties" do
-    let(:properties) { DataHelper.parse_properties }
-    
     it "parses all properties correctly" do
       expect(properties.length).to eq 4000
       expect(properties).to be_instance_of Array
@@ -36,6 +35,22 @@ describe DataHelper do
         expect(p.beds).not_to be_nil
         expect(p.baths).not_to be_nil
         expect(p.square_meters).not_to be_nil
+      end
+    end
+  end
+  
+  describe "#get_provinces" do
+    it "returns array of provinces given property and possible provinces" do
+      array = DataHelper.get_provinces(properties.first, provinces)
+      expect(array.first).to be provinces.first
+    end
+    it "every property has at least on province" do
+      properties.each do |property|
+        array = DataHelper.get_provinces(property, provinces)
+        
+        expect(array.length).to be > 0 
+        expect(array.length).to be <= 2
+        expect(array.first).to be_instance_of Province
       end
     end
   end

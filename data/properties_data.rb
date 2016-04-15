@@ -7,7 +7,7 @@ class PropertiesData
 
   def initialize
     @provinces = DataHelper.parse_provinces
-    @properties = DataHelper.parse_properties
+    @properties = DataHelper.parse_properties(@provinces)
   end
   
   def find(id)

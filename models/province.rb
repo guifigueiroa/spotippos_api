@@ -11,4 +11,12 @@ class Province
     @upper_left = boundaries["upperLeft"]
     @bottom_right = boundaries["bottomRight"]
   end
+  
+  def inside_province?(x, y)
+    if(x > upper_left["x"] && x <= bottom_right["x"] && y > bottom_right["y"] && y <= upper_left["y"])
+      true
+    else
+      false
+    end
+  end
 end

@@ -20,10 +20,23 @@ class DataHelper
     end
   end
   
-  def self.parse_properties
+  def self.parse_properties(provinces)
     ppt_hash = parse_file(PROPERTIES_PATH)
+    
     ppt_hash["properties"].map do |params|
-      Property.new(params)
+      property = Property.new(params)
+      property.provinces = get_provinces(property, provinces)
+      property
     end
+  end
+  
+  def self.get_provinces(property, provinces)
+    provinces_array = []
+    provinces.each do |province|
+      if province.inside_province?(property.x, property.y)
+        provinces_array << province
+      end
+    end
+    provinces_array
   end
 end

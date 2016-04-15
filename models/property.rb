@@ -1,7 +1,7 @@
 require 'json'
 
 class Property
-  attr_accessor :id, :x, :y, :beds, :baths, :square_meters
+  attr_accessor :id, :x, :y, :beds, :baths, :square_meters, :provinces
   
   def initialize(params)
     @id = params["id"]
@@ -10,6 +10,7 @@ class Property
     @beds = params["beds"]
     @baths = params["baths"]
     @square_meters = params["squareMeters"]
+    @provinces = []
   end
   
   def to_json
