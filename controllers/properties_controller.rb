@@ -6,6 +6,12 @@ class PropertiesController
   end
   
   def create(params)
+    # validations
+    return nil if params["beds"].nil? || params["beds"] < 1 || params["beds"] > 5
+    return nil if params["baths"].nil? || params["baths"] < 1 || params["baths"] > 4
+    return nil if params["squareMeters"].nil? || params["squareMeters"] < 20 || params["squareMeters"] > 240
+    
+    # creating new property
     params["id"] = @properties.next_id
     p = Property.new(params)
     @properties << p

@@ -14,6 +14,48 @@ describe 'API methods' do
     expect(json["id"]).not_to be_nil
   end
   
+  it 'presents error when POST request has invalid beds data' do
+    invalid_data = { "x" => 222, "y" => 444, 
+      "beds" => 10, "baths" => 3, "squareMeters" => 210 }.to_json
+    post '/properties', invalid_data, accepts_json
+    
+    expect(last_response).to be_client_error
+    
+    invalid_data = { "x" => 222, "y" => 444, 
+      "baths" => 3, "squareMeters" => 210 }.to_json
+    post '/properties', invalid_data, accepts_json
+    
+    expect(last_response).to be_client_error
+  end
+  
+  it 'presents error when POST request has invalid baths data' do
+    invalid_data = { "x" => 222, "y" => 444, 
+      "beds" => 4, "baths" => 5, "squareMeters" => 210 }.to_json
+    post '/properties', invalid_data, accepts_json
+    
+    expect(last_response).to be_client_error
+    
+    invalid_data = { "x" => 222, "y" => 444, 
+      "beds" => 4, "squareMeters" => 210 }.to_json
+    post '/properties', invalid_data, accepts_json
+    
+    expect(last_response).to be_client_error
+  end
+  
+  it 'presents error when POST request has invalid square meters data' do
+    invalid_data = { "x" => 222, "y" => 444, 
+      "beds" => 4, "baths" => 3, "squareMeters" => 250 }.to_json
+    post '/properties', invalid_data, accepts_json
+    
+    expect(last_response).to be_client_error
+    
+    invalid_data = { "x" => 222, "y" => 444, 
+      "beds" => 4, "baths" => 3 }.to_json
+    post '/properties', invalid_data, accepts_json
+    
+    expect(last_response).to be_client_error
+  end
+  
   it 'performs GET request for specific property' do
     get '/properties/1'
 

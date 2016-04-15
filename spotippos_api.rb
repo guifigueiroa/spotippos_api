@@ -18,7 +18,11 @@ end
 post "/properties" do
   request.body.rewind  # in case someone already read it
   data = JSON.parse request.body.read
-  ctrl.create(data).to_json
+  property = ctrl.create(data)
+  
+  halt 422 if property.nil?
+  
+  return property.to_json
 end
 
 get "/properties/:id" do |id|
