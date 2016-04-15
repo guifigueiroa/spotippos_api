@@ -20,16 +20,22 @@ post "/properties" do
   data = JSON.parse request.body.read
   property = ctrl.create(data)
   
-  halt 422 if property.nil?
+  halt 422, { msg: "Invalid data" }.to_json if property.nil?
   
   return property.to_json
 end
 
 get "/properties/:id" do |id|
   # checks if string is valid integer, halts if not
-  halt 400 unless id.to_i.to_s == id
+  halt(400, { msg: "Invalid id for property" }.to_json) unless id.to_i.to_s == id
   
-  ctrl.show(id.to_i).to_json
+  result = ctrl.show(id.to_i)
+  
+  if result
+    return result.to_json
+  else
+    halt 404, { msg: "No property with specified id" }.to_json
+  end
 end
 
 get "/properties" do
@@ -40,13 +46,18 @@ get "/properties" do
   
   # checks if request is valid
   if ax && ay && bx && by
-    ctrl.query(ax.to_i, ay.to_i, bx.to_i, by.to_i).to_json
+    result = ctrl.query(ax.to_i, ay.to_i, bx.to_i, by.to_i)
+    if result
+      return result.to_json
+    else
+      halt 404, { msg: "No properties with specified parameters" }.to_json
+    end
   else
     # invalid params
-    halt 400
+    halt 400, { msg: "Invalid parameters" }.to_json
   end
 end
 
 error Sinatra::NotFound do
-  { msg: "Not found" }.to_json
+  halt 404, { msg: "Not found URL" }.to_json
 end
