@@ -68,6 +68,17 @@ describe 'API methods' do
     expect(json["y"]).to eq 521
     expect(json["beds"]).to eq 5
     expect(json["baths"]).to eq 4
+    expect(json["provinces"]).to eq ["Gode"]
     expect(json["squareMeters"]).to eq 198
+  end
+  
+  it 'presents error when GET request has invalid params' do
+    get '/properties/text'
+    
+    expect(last_response).to be_client_error
+    
+    get '/properties/'
+    
+    expect(last_response).to be_client_error
   end
 end

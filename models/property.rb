@@ -19,7 +19,7 @@ class Property
       y: @y,
       beds: @beds,
       baths: @baths,
-      provinces: @provinces,
+      provinces: @provinces.map{|p| p.name },
       squareMeters: @square_meters }.to_json
   end
 end

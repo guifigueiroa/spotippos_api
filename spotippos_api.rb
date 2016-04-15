@@ -26,5 +26,8 @@ post "/properties" do
 end
 
 get "/properties/:id" do |id|
+  # check if string is valid integer, halts if not
+  halt 400 unless id.to_i.to_s == id
+  
   ctrl.show(id.to_i).to_json
 end
