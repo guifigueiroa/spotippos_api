@@ -1,7 +1,6 @@
 # Spotippos API
 
-API create as part of a [code challenge](https://github.com/VivaReal/code-challenge).
-Created with Ruby and Sinatra web framework, tested with RSpec and Rack:Test for HTTP requests.
+API created as part of a [code challenge](https://github.com/VivaReal/code-challenge) using Ruby and Sinatra web framework, tested with RSpec and Rack:Test for HTTP requests.
 
 API deployed to <http://spotippos-api.herokuapp.com/> ready to use.
 
@@ -96,7 +95,7 @@ Make sure Ruby is installed on your system. On the command line write and run co
   
 You will know whether it's installed or not if you see its version number!
 
-If you don't have Sinatra gem installed run following command:
+If you don't have Sinatra gem installed, run following command:
 
   `gem install sinatra`
 
@@ -104,10 +103,12 @@ Then clone the git repository for your computer/server using:
 
   `git clone https://github.com/guifigueiroa/spotippos_api.git`
   
-Enter the directory where you cloned the application and install all dependencies:
+Enter the directory where you cloned the application and install all dependencies running:
 
   `bundle install`
   
 Then run your application:
 
   `ruby spotippos_api.rb`
+  
+By default your API will be accessible at `http://localhost:4567/`
