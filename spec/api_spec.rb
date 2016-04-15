@@ -13,4 +13,19 @@ describe 'API methods' do
     
     expect(json["id"]).not_to be_nil
   end
+  
+  it 'performs GET request for specific property' do
+    get '/properties/1'
+
+    json = JSON.parse(last_response.body)
+    
+    expect(last_response).to be_ok
+
+    expect(json["id"]).to eq 1
+    expect(json["x"]).to eq 88
+    expect(json["y"]).to eq 521
+    expect(json["beds"]).to eq 5
+    expect(json["baths"]).to eq 4
+    expect(json["squareMeters"]).to eq 198
+  end
 end

@@ -18,7 +18,7 @@ end
 describe Property do
   describe "to_json" do
     let(:property) { Property.new(9999,34,53,1,1,40) }
-    let(:property_json) { "{\"id\":9999,\"x\":34,\"y\":53,\"beds\":1,\"baths\":1,\"square_meters\":40}" }
+    let(:property_json) { "{\"id\":9999,\"x\":34,\"y\":53,\"beds\":1,\"baths\":1,\"squareMeters\":40}" }
     it "parses the data to json format" do
       expect(property.to_json).to eql property_json
     end

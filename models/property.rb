@@ -18,6 +18,6 @@ class Property
       y: @y, 
       beds: @beds, 
       baths: @baths, 
-      square_meters: @square_meters }.to_json
+      squareMeters: @square_meters }.to_json
   end
 end

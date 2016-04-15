@@ -20,3 +20,7 @@ post "/properties" do
   data = JSON.parse request.body.read
   ctrl.create(data).to_json
 end
+
+get "/properties/:id" do |id|
+  ctrl.show(id.to_i).to_json
+end
