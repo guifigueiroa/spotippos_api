@@ -12,6 +12,7 @@ describe 'API methods' do
     expect(last_response.content_type).to eq accepts_json["Content-Type"]
     
     expect(hash["id"]).not_to be_nil
+    expect(hash["provinces"]).not_to be_empty
   end
   
   it 'presents error when POST request has invalid beds data' do

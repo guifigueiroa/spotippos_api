@@ -14,8 +14,14 @@ class PropertiesController
     # creating new property
     params["id"] = @properties.next_id
     p = Property.new(params)
+    @properties.provinces.each do |province|
+      if province.inside_province?(p.x, p.y)
+        p.provinces << province
+      end
+    end
+    
     @properties << p
-    p
+    return p
   end
   
   def index

@@ -59,5 +59,5 @@ get "/properties" do
 end
 
 error Sinatra::NotFound do
-  halt 404, { msg: "Not found URL" }.to_json
+  halt 404, { msg: "Not found URL. More details on how to use API can be found at https://github.com/guifigueiroa/spotippos_api" }.to_json
 end

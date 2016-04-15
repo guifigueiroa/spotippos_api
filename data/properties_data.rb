@@ -4,7 +4,8 @@ require 'forwardable'
 class PropertiesData
   include Enumerable
   extend Forwardable
-
+  attr_reader :provinces
+  
   def initialize
     @provinces = DataHelper.parse_provinces
     @properties = DataHelper.parse_properties(@provinces)
