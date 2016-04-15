@@ -44,7 +44,8 @@ end
 describe PropertiesData do
   let(:properties) { PropertiesData.new }
   let(:next_id) { properties.next_id }
-  let(:new_property) { Property.new(next_id,34,12,4,2,77) }
+  let(:property_params) { { "id" => next_id, "x" => 34, "y" => 53, "beds" => 1, "baths" => 1, "squareMeters" => 40 } }
+  let(:new_property) { Property.new(property_params) }
   before do
     properties << new_property
   end

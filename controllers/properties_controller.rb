@@ -6,12 +6,8 @@ class PropertiesController
   end
   
   def create(params)
-    p = Property.new(@properties.next_id,
-                     params["x"],
-                     params["y"],
-                     params["beds"],
-                     params["baths"],
-                     params["squareMeters"])
+    params["id"] = @properties.next_id
+    p = Property.new(params)
     @properties << p
     p
   end

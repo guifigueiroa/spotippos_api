@@ -22,8 +22,8 @@ class DataHelper
   
   def self.parse_properties
     ppt_hash = parse_file(PROPERTIES_PATH)
-    ppt_hash["properties"].map do |p|
-      Property.new(p["id"], p["x"], p["y"], p["beds"], p["baths"], p["squareMeters"])
+    ppt_hash["properties"].map do |params|
+      Property.new(params)
     end
   end
 end

@@ -6,8 +6,8 @@ class PropertiesData
   extend Forwardable
 
   def initialize
-    @properties = DataHelper.parse_properties
     @provinces = DataHelper.parse_provinces
+    @properties = DataHelper.parse_properties
   end
   
   def find(id)
