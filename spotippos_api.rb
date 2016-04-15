@@ -26,8 +26,23 @@ post "/properties" do
 end
 
 get "/properties/:id" do |id|
-  # check if string is valid integer, halts if not
+  # checks if string is valid integer, halts if not
   halt 400 unless id.to_i.to_s == id
   
   ctrl.show(id.to_i).to_json
+end
+
+get "/properties" do
+  ax = params['ax']
+  ay = params['ay']
+  bx = params['bx']
+  by = params['by']
+  
+  # checks if request is valid
+  if ax && ay && bx && by
+    ctrl.query(ax.to_i, ay.to_i, bx.to_i, by.to_i).to_json
+  else
+    # invalid params
+    halt 400
+  end
 end

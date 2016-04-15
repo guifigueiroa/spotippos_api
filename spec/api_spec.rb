@@ -7,11 +7,11 @@ describe 'API methods' do
   it 'performs POST request for adding property' do
     post '/properties', data, accepts_json
     
-    json = JSON.parse(last_response.body)
+    hash = JSON.parse(last_response.body)
     expect(last_response).to be_ok
     expect(last_response.content_type).to eq accepts_json["Content-Type"]
     
-    expect(json["id"]).not_to be_nil
+    expect(hash["id"]).not_to be_nil
   end
   
   it 'presents error when POST request has invalid beds data' do
@@ -59,17 +59,17 @@ describe 'API methods' do
   it 'performs GET request for specific property' do
     get '/properties/1'
 
-    json = JSON.parse(last_response.body)
+    hash = JSON.parse(last_response.body)
     
     expect(last_response).to be_ok
 
-    expect(json["id"]).to eq 1
-    expect(json["x"]).to eq 88
-    expect(json["y"]).to eq 521
-    expect(json["beds"]).to eq 5
-    expect(json["baths"]).to eq 4
-    expect(json["provinces"]).to eq ["Gode"]
-    expect(json["squareMeters"]).to eq 198
+    expect(hash["id"]).to eq 1
+    expect(hash["x"]).to eq 88
+    expect(hash["y"]).to eq 521
+    expect(hash["beds"]).to eq 5
+    expect(hash["baths"]).to eq 4
+    expect(hash["provinces"]).to eq ["Gode"]
+    expect(hash["squareMeters"]).to eq 198
   end
   
   it 'presents error when GET request has invalid params' do
@@ -80,5 +80,23 @@ describe 'API methods' do
     get '/properties/'
     
     expect(last_response).to be_client_error
+  end
+  
+  it 'performs GET request for query properties within range' do
+    get '/properties?ax=0&ay=50&bx=15&by=0'
+
+    hash = JSON.parse(last_response.body)
+    expect(last_response).to be_ok
+    
+    expect(hash).to eq({ "foundProperties" => 1, 
+                                  "properties" => [
+                                    { "id" => 3142, 
+                                      "x" => 8, 
+                                      "y" => 44, 
+                                      "beds" => 5, 
+                                      "baths" => 4, 
+                                      "provinces" => [ "Scavy" ], 
+                                      "squareMeters" => 236}
+                                    ]})
   end
 end

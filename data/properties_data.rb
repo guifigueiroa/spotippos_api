@@ -15,6 +15,14 @@ class PropertiesData
     search.first if search
   end
   
+  def find_properties_within(ax, ay, bx, by)
+    search = @properties.select do |p| 
+      p.x >= ax && p.x <= bx && p.y > by && p.y < ay
+    end
+    { foundProperties: search.length,
+      properties: search }
+  end
+  
   def next_id
     max = @properties.max {|a, b| a.id <=> b.id }
     if max

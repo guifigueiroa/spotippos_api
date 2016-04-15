@@ -25,4 +25,8 @@ class PropertiesController
   def show(id)
     @properties.find(id)
   end
+  
+  def query(ax, ay, bx, by)
+    @properties.find_properties_within(ax, ay, bx, by)
+  end
 end

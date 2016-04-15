@@ -89,4 +89,20 @@ describe PropertiesData do
       expect(properties.next_id).to eql next_id + 1
     end
   end
+  
+  describe "#find_properties_within" do
+    let(:search) { properties.find_properties_within(0,50,50,0) }
+    
+    it "has hash with adequate structure" do
+      expect(search.length).to eq 2
+      expect(search).to be_instance_of Hash
+      expect(search[:foundProperties]).not_to be_nil
+      expect(search[:properties]).not_to be_nil
+    end
+    
+    it "finds all properties with given params" do
+      expect(search[:properties].length).to eq 7
+      expect(search[:properties].first).to be_instance_of Property
+    end
+  end
 end

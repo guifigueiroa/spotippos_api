@@ -13,13 +13,13 @@ class Property
     @square_meters = params["squareMeters"]
   end
   
-  def to_json
+  def to_json(options=nil)
     { id: @id,
       x: @x,
       y: @y,
       beds: @beds,
       baths: @baths,
       provinces: @provinces.map{|p| p.name },
-      squareMeters: @square_meters }.to_json
+      squareMeters: @square_meters }.to_json(options)
   end
 end
