@@ -26,7 +26,7 @@ Body:
 ```
 
 Response:
-```
+```json
 {
   "id": 4001,
   "x": 222,
@@ -90,7 +90,7 @@ Response:
 
 ## How to run locally
 
-Make sure Ruby are installed on your system. On the command line write and run commands below:
+Make sure Ruby is installed on your system. On the command line write and run command below:
 
   `ruby -v`
   
